@@ -1,9 +1,9 @@
 
 modules :
-	ocamlc -c -g graph.mli graph.ml gfile.mli gfile.ml tools.mli tools.ml
+	ocamlc -c -g graph.mli graph.ml gfile.mli gfile.ml tools.mli tools.ml flow.mli flow.ml
 
 main: modules
-	ocamlc -g -o ftest graph.cmo gfile.cmo tools.cmo ftest.ml
+	ocamlc -g -o ftest graph.cmo gfile.cmo tools.cmo flow.cmo ftest.ml
 
 byte:
 	ocamlbuild ftest.byte
