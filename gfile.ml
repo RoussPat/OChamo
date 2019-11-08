@@ -102,10 +102,15 @@ let from_file path =
   
     (* Write in this file. *)
     fprintf ff "digraph g {\n" ;
-    fprintf ff "  node [shape = circle]; \n" ;
+    fprintf ff "node [shape = circle]; \n" ;
   
+    (* Write all nodes (with fake coordinates) *)
+    n_iter_sorted graph (fun id -> fprintf ff "%d " id) ;
+    fprintf ff ";\n" ;
+
+
     (* Write all arcs *)
-    e_iter graph (fun id1 id2 lbl -> fprintf ff "  %d -> %d [ label = %s]; \n" id1 id2 lbl) ;
+    e_iter graph (fun id1 id2 lbl -> fprintf ff "%d -> %d [ label = %s]; \n" id1 id2 lbl) ;
     fprintf ff "} \n" ;
     close_out ff ;
     ()
