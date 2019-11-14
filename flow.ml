@@ -1,10 +1,5 @@
 open Graph
 
-type labledId = {
-  id:id;
-  bool:marked;
-}
-
 (*renvoi true si l contient n*)
 let contains l n = 
   let rec loop = function
@@ -12,22 +7,9 @@ let contains l n =
     |_ -> false
   in loop l
 
-let labelfind l id = 
-  let rec inner l = match l with
-    |x::rest -> if (id=x.id) then x else inner l
-    |_ -> false
-  in 
-  inner l ;;
 
-let unlabel labeledlist = 
-  let inner acu l =
-    match l with 
-    |[] -> acu
-    |x::rest -> inner x.id::acu rest
-  in
-  inner [] labeledlist ;;
 
-let voisin g id = (* 'a graph -> 'a' -> 'a' list *)
+let neighbour g id = (* 'a graph -> 'a' -> 'a' list *)
   (* retourne une liste de touts les voisins d'un node id dans le graph g
     parcours tout les arcs de g avec G.iter 
     verifie avec un predicat bidon (fun id1 id2 -> id1 = id) prend un arc et verifie si la source est id
@@ -36,15 +18,12 @@ let voisin g id = (* 'a graph -> 'a' -> 'a' list *)
     TO DO
   *)
 
-let rmmarked idlist labeledlist = (*Pirvate*)
-  (* retire toute les occurences de noeux marqués dans labeledlist de la list idlist et la retourne*)
-  let rec inner acu idlist = 
-    match idlist with
-      |[] -> acu
-      |x::rest -> (let k = labelfind labeledlist x in 
-        if k.marked then inner acu rest else inner (x::acu) rest)
-    in
-  inner [] idlist ;;
+let flow_var g idlist = (*(float*float) graph ->  id list -> float *)
+
+let variation_graph g = (*(float*float) graph -> float graph *) 
+
+
+
 
 
 let find_path g forbidden id1 id2  = ()
@@ -59,22 +38,13 @@ let find_path g forbidden id1 id2  = ()
   let rec find_next acu last = ??
   
   il faut une pile,
-  il faut labeliser les sommets ou utiliser une liste d'assotiation
+  il faut labeliser les sommets ou utiliser une liste d'association
   entre les sommets et des labels (liste de LabeledId)
   ensuite on empile le permier sommet du graph
   et tant que la pile n'est pas vide on explore la tete de la fille 
   en enfilan les fils de chaques noeux si ils ne sont pas marqués
   
   on retourne l'etat du lablel de destination a la fin de l'algo
-
-
-  IMPROUMENTS: on arrete si on explore id2
+  on arrete si on explore id2
     *)
-    let lablist = (* ...*) in
-
-    let rec explorer id = 
-    lablist[id].marked = true ; 
-
-    Pile.push (rmmarked (voisin g id));;
-
 
