@@ -11,12 +11,9 @@ let contains l n =
 
 let neighbour g id = (* 'a graph -> 'a' -> 'a' list *)
   (* retourne une liste de touts les voisins d'un node id dans le graph g
-    parcours tout les arcs de g avec G.iter 
-    verifie avec un predicat bidon (fun id1 id2 -> id1 = id) prend un arc et verifie si la source est id
-    (on peut utiliser List.cons sur le iter mais il faut raouter la dimention du predicat )
-
-    TO DO
-  *)
+    parcours tout les arcs de g avec G.iter *)
+  let arcs = Graph.out_arcs g id in
+  List.map (fun (x, y) -> x) arcs
 
 let flow_var g idlist = (*(float*float) graph ->  id list -> float *)
 
@@ -25,26 +22,25 @@ let variation_graph g = (*(float*float) graph -> float graph *)
 
 
 
-
-let find_path g forbidden id1 id2  = ()
-  (*acu = liste de node, last = dernier node ajoute
-  iter sur tous les nodes du graphe si un arc existe 
-  (pas forbidden et pas deja dans la liste) on lajoute et iteration suivante
-  arret : last = destination id2 -> acu 
+(* cherche un chemin entre id1 et id2, retourne Some(id list) si il existe, None sinon*)
+let find_path g forbidden id1 id2  =
   
-  PB : iter => recursion en arbre sur chaque node possible, il faut garder uniquement 
-  le premier chemin trouvé ? le plus court (nb de nodes)? pb au moment du dépilement
-
-  let rec find_next acu last = ??
-  
-  il faut une pile,
-  il faut labeliser les sommets ou utiliser une liste d'association
-  entre les sommets et des labels (liste de LabeledId)
-  ensuite on empile le permier sommet du graph
-  et tant que la pile n'est pas vide on explore la tete de la fille 
-  en enfilan les fils de chaques noeux si ils ne sont pas marqués
-  
-  on retourne l'etat du lablel de destination a la fin de l'algo
-  on arrete si on explore id2
-    *)
-
+  let rec loop_next_node list_id current_node = 
+    (*appel recursif sur les voisins du noeud courant*)
+    let rec loop_on_neighbours neighbours = match neighbours with
+      |[] -> None
+      |x::rest -> if (contains list_id x || contains forbidden x)
+                then None
+                else match (loop_next_node x::list_id x) with
+                  |None -> loop_on_neighbours rest
+                  |X -> X
+    in
+ 
+      if (currend_node = id2)
+      then Some(list_id)
+      else
+        let neighbours_of_current_node = neighbour g x 
+        in
+          loop_on_neighbours neighbours_of_current_node
+  in
+    loop_next_node [] x 
