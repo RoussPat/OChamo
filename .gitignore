@@ -1,5 +1,6 @@
 *.mlo
 *.cmo
+*.cmi
 ftest 
 ftest.byte
 ftest.native

@@ -1,4 +1,5 @@
 open Graph
+open Tools
 
 type path = id list
 
@@ -17,11 +18,22 @@ let neighbours g id = (* a graph -> id -> id list  *)
   let arcs = Graph.out_arcs g id in
   List.map (fun (x, y) -> x) arcs
 
-let flow_var g idlist = ()(*(float*float) graph ->  id list -> float *)
-
-let variation_graph g = () (*(float*float) graph -> float graph *) 
 
 
+let flow_var g idlist =(*(float*float) graph ->  id list -> float *)
+  let inner acu l = match l with
+    |[] -> failwith "not possible"
+    |[x]-> acu
+    |x::(y::rest) -> (match List.find(fun (a,_) -> a=y) (Graph.out_arcs g x) with
+      |_,(a,b) -> if (b-a) < acu then inner (b-a) (y::rest) else inner acu (y::rest) ) 
+  in
+  inner Float.infinity(*and beyond*) idlist ;;
+
+
+let variation_graph gr = (*(float*float) graph -> float graph *) 
+  let g2 = Graph.e_fold gr (fun g id1 id2 (a,b) -> Graph.new_arc g id1 id2 (b-a)) (clone_nodes gr) in
+  Graph.e_fold g2 (fun g id1 id2 (a,b) -> Graph.new_arc g id2 id1 a) g2
+;;
 
 
 (* cherche un chemin entre id1 et id2, retourne Some(id list) si il existe, None sinon*)
