@@ -32,7 +32,7 @@ let find_path g forbidden id1 id2  =
     let rec loop_on_neighbours n = match n with
       |[] -> None
       |x::rest -> if (contains list_id x || contains forbidden x)
-                then None
+                then loop_on_neighbours rest
                 else match (loop_next_node (x::list_id) x) with
                   |None -> loop_on_neighbours rest
                   |x -> x
@@ -44,6 +44,8 @@ let find_path g forbidden id1 id2  =
           loop_on_neighbours (neighbours g current_node)
 
   in
-    loop_next_node [] id1
+    match( loop_next_node [id1] id1 ) with
+    |None -> None
+    |Some(l) -> Some(List.rev (l))
 
 

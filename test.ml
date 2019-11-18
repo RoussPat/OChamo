@@ -3,8 +3,9 @@ open Tools
 open Flow
 
 let g1 = (Gfile.from_file "graph1");;
-let n1 = neighbours g1 1;;
-let n2 = neighbours g1 2;;
+Gfile.export "graph1.dot" g1;;
+let Some(n1) = find_path g1 [] 0 5;;
+let Some(n2) = find_path g1 [2; 1] 0 5;;
 
 let f id = Printf.printf ("%d ") id;;
 List.iter f n1 ;;

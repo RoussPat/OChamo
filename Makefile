@@ -16,7 +16,7 @@ rebuild :
 	main
 
 test : modules
-	ocamlc -g -o test graph.cmo gfile.cmo tools.cmo flow.cmo gittest.ml
+	ocamlc -g -o test graph.cmo gfile.cmo tools.cmo flow.cmo test.ml
 
 mrproper: 
 	rm -f *.cmo
