@@ -1,5 +1,6 @@
 open Graph
 open Printf
+open Tools
     
 type path = string
 
@@ -17,6 +18,7 @@ type path = string
    e 0 2 8
 
  *)
+
 
 let write_file path graph =
 
@@ -114,3 +116,8 @@ let from_file path =
     fprintf ff "} \n" ;
     close_out ff ;
     ()
+
+let initialise_flow_graph str = 
+  gmap (from_file str) (fun x -> (0,(int_of_string x)));;
+
+let int_int_graph_to_string_graph g = gmap g (fun (a,b) -> ("\"" ^ (string_of_int a)  ^ "/" ^ (string_of_int b) ^ "\""));;

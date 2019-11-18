@@ -1,6 +1,6 @@
 
 modules :
-	ocamlc -c -g graph.mli graph.ml gfile.mli gfile.ml tools.mli tools.ml flow.mli flow.ml
+	ocamlc -c -g graph.mli graph.ml tools.mli tools.ml gfile.mli gfile.ml flow.mli flow.ml
 
 main: modules
 	ocamlc -g -o ftest graph.cmo gfile.cmo tools.cmo flow.cmo ftest.ml
@@ -16,14 +16,17 @@ rebuild :
 	main
 
 test : modules
-	ocamlc -g -o test graph.cmo gfile.cmo tools.cmo flow.cmo test.ml
+	ocamlc -g -o test graph.cmo tools.cmo gfile.cmo flow.cmo test.ml
 
 test2 : modules
-	ocamlc -g -o test2 graph.com gfile.cmo tools.cmo flow.cmo test2.ml
+	ocamlc -g -o test2 graph.cmo tools.cmo gfile.cmo flow.cmo test2.ml
 
 mrproper: 
 	rm -f *.cmo
 	rm -f *.cmi
+	rm -f *.dot
+	rm -f *.svg
+	rm -f *.tmp
 	rm -f ftest
 	rm -f ftest.byte
 	rm -f ftest.native
