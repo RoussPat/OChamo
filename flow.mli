@@ -9,7 +9,10 @@ type path = id list
  *
  *  forbidden is a list of forbidden nodes (they have already been visited)
  *)
-val neighbour: 'a graph -> 'a' -> 'a' list 
+val neighbours: 'a graph -> id -> id list 
+(*
 val flow_var: (float*float) graph ->  id list -> float (*pour un graphe et un chemain danse ce graph retourne la variation de flot sur ce chemain*) 
 val variation_graph: (float*float) graph -> float graph (*retourne le graphe d'ecart d'un graph donné*)
+*)
+
 val find_path: int graph -> id list -> id -> id -> path option
