@@ -3,9 +3,17 @@ open Tools
 open Flow
 
 
+let add_transaction l person ammount = 
+  let loop acu = function
+    |[]->acu
+    |(p,a)::rest -> if (p=person) then loop ((p,a+ammount)::acu)  rest 
+                                else loop ((p,a)::acu) rest 
+  in 
+    loop [] l
+
 
 let read_transaction tot_list tot line = 
-	try Scanf.sscanf line "t %s %f" (fun pers ammount -> ((SETTER_EMMA,(tot6+ammount))
+	try Scanf.sscanf line "t %s %f" (fun pers ammount -> ((add_transaction tot_list  pers ammount,  tot+ammount))
 	with e-> 
 		Printf.printf "Cannot read transaction in line - %s:\n%s\n%!" (Printexc.to_string e) line ;
     	failwith "from_file" ;;

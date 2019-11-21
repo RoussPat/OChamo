@@ -15,7 +15,7 @@ val apply_flow_var: (int*int*int) graph -> path -> int -> (int*int*int) graph (*
 
 (* find_path gr forbidden id1 id2 
  *   returns None if no path can be found.
- *   returns Some p if a path p from id1 to id2 has been found. 
+ *   returns Some (p*c) if a path p from id1 to id2  with cost c has been found. 
  *
  *  forbidden is a list of forbidden nodes (they have already been visited)
  *)

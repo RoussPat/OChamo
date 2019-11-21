@@ -51,7 +51,7 @@ let apply_flow_var gr idlist amount = (*(int*int*int) graph -> path -> int -> (i
   in
   inner idlist gr;;
 
-(* cherche un chemin entre id1 et id2, retourne Some(id list) si il existe, None sinon*)
+(* cherche un chemin entre id1 et id2, retourne Some(id list, cost) si il existe, None sinon*)
 let find_path g forbidden id1 id2  =
   
   let rec loop_next_node list_id current_node current_cost= 
@@ -62,7 +62,7 @@ let find_path g forbidden id1 id2  =
                 then loop_on_neighbours rest
                 else match (loop_next_node (x::list_id) x (current_cost + c)) with
                   |None -> loop_on_neighbours rest
-                  |Some((l, cost)) -> match (loop_on_neighbours rest) with
+                  |Some((l, cost)) -> match (loop_on_neighbours rest) with (*compare le cout pour retourner le chemin de cout min*)
                     |None -> Some(l,cost)
                     |Some((l2, cost2)) -> if (cost < cost2) then Some((l, cost)) else Some((l2, cost2))
     in
