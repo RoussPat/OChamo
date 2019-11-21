@@ -81,6 +81,6 @@ let ford_fulkerson g puit source=
     match (find_path var_graph [] puit source) with
       | None -> (g,d)
       | Some(x) -> (let delta = (flow_var var_graph x) in 
-                    List.iter listprint x ;Printf.printf "| avec flot D = %d\n%!" d ; inner (apply_flow_var g x delta) (d+delta))
+                    List.iter listprint x ;Printf.printf "| avec flot D = %d\n%!" delta ; inner (apply_flow_var g x delta) (d+delta))
   in
   inner g 0 ;;
