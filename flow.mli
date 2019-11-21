@@ -13,11 +13,19 @@ val variation_graph: (int*int) graph -> int graph (*retourne le graphe d'ecart d
 
 val apply_flow_var: (int*int) graph -> path -> int -> (int*int) graph (*applique une reduction ou augmetation de flot sur un chemain donné pour un graph donné*)
 
-val find_path: 'a graph -> id list -> id -> id -> path option
 (* find_path gr forbidden id1 id2 
  *   returns None if no path can be found.
  *   returns Some p if a path p from id1 to id2 has been found. 
  *
  *  forbidden is a list of forbidden nodes (they have already been visited)
  *)
+val find_path: 'a graph -> id list -> id -> id -> path option
+
+
+
+(*ford_fulkerson g source puit
+	retourne le graphe g avec le flot max possible sur ce graphe, et le débit associé 
+	pour un sommet source et puit donné
+	arc : (int*int) = (flot*capacité)
+	*)
  val ford_fulkerson: (int*int) graph -> id -> id -> (((int*int) graph)*int)
