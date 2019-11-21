@@ -8,7 +8,12 @@ type path = string
 
 val initialise_flow_graph: string -> (int*int) graph 
 
+val initialise_flow_graph_min_cost: string -> (int*int*int) graph 
+
 val int_int_graph_to_string_graph: (int*int) graph -> string graph
+
+val int_int_int_graph_to_string_graph: (int*int*int) graph -> string graph
+
 
 (* Values are read as strings. *)
 val from_file: path -> string graph
