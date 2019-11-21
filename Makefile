@@ -27,6 +27,8 @@ ff : modules
 ffcost : modules
 	ocamlc -g -o ford-fulkerson-min-cost graph.cmo tools.cmo gfile.cmo fcost.cmo ford-fulkerson-min-cost.ml
 
+MoneySharing : modules
+	ocamlc -g -o MoneySharing graph.cmo tools.cmo gfile.cmo flow.cmo MoneySharing.ml
 
 mrproper: 
 	rm -f *.cmo
