@@ -16,7 +16,7 @@ let contains l n =
   let rec loop = function
     |x::rest -> if (n=x) then true else (loop rest)
     |_ -> false
-  in loop l
+in loop l
 
 
 
@@ -67,8 +67,7 @@ let find_path g forbidden id1 id2  =
  
       if (current_node = id2)
       then Some(list_id)
-      else
-          loop_on_neighbours (neighbours g current_node)
+      else loop_on_neighbours (neighbours g current_node)
 
   in
     match( loop_next_node [id1] id1 ) with

@@ -21,6 +21,9 @@ test : modules
 test2 : modules
 	ocamlc -g -o test2 graph.cmo tools.cmo gfile.cmo flow.cmo test2.ml
 
+MoneySharing : modules
+	ocamlc -g -o MoneySharing graph.cmo tools.cmo gfile.cmo flow.cmo MoneySharing.ml
+
 mrproper: 
 	rm -f *.cmo
 	rm -f *.cmi
