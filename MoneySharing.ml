@@ -10,12 +10,11 @@ let add_transaction l person ammount =
                                 else loop ((p,a)::acu) rest 
   in 
     loop [] l
-
+;;
 
 let read_transaction tot_list tot line = 
-	try Scanf.sscanf line "t %s %f" (fun pers ammount -> ((add_transaction tot_list  pers ammount,  tot+ammount))
-	with e-> 
-		Printf.printf "Cannot read transaction in line - %s:\n%s\n%!" (Printexc.to_string e) line ;
+	try Scanf.sscanf line "t %s %f" (fun pers ammount -> ((add_transaction tot_list  pers ammount,  tot+ammount)))
+	with e -> Printf.printf "Cannot read transaction in line - %s:\n%s\n%!" (Printexc.to_string e) line ;
     	failwith "from_file" ;;
 
 let read_Pers tot_list line =
@@ -71,11 +70,11 @@ let from_file path =
   
 let resolv (n,tot_list,tot) = 
 	let tot_list2 = List.map (fun (x,a)->(x,(a-(tot/n)))) tot_list in
-	let create_graph n g = match n with
+	let create_graph n1 g = match n1 with
 		|0 -> g
 		|k -> create_graph (new_node g (k-1)) (k-1)
 	in 
-	let graph = new (create_graph n empty_graph) in
+	let graph = create_graph n empty_graph in
 	let add_arcs g labels = 
 		Graph.n_fold g (fun gr1 id1 -> Graph.n_fold gr1 (fun gr2 id2 -> if id1 = id2 then gr2 else (Graph.new_arc gr2 id1 id2 (0,label)))) g
 	in
