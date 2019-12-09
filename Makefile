@@ -44,3 +44,9 @@ mrproper:
 	rm -f ftest.native
 	rm -rf ./_build
 	rm -f test
+	rm -f MoneySharing/MoneySharing
+	rm -f test3
+	rm -f test2
+	rm -f test
+	rm -f *.tmp
+

@@ -6,3 +6,4 @@ ftest.byte
 ftest.native
 ./_build
 ./TestNoToExport
+./MonyeSharing/MoneySharing

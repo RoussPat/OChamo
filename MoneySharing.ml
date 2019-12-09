@@ -72,20 +72,27 @@ let from_file path =
   close_in infile ;
   final_result
   
+let rec print_tot_list l = match l with
+ |[] -> Printf.printf "\n%!"
+ |(name,ammount)::rest -> Printf.printf "[nom = %s : %d€] " name ammount ; print_tot_list rest
+;;
+
 let get_name_by_id l id = 
-  let rec loop acu = function
-    |[] -> failwith "Name not found id= %d" id
-    |(name, _)::rest -> if acu = id then name else loop (acu+1) rest
+  let rec loop acu lis id1= match lis with
+    |[] -> "test" (*failwith (Printf.sprintf "Name not found id= %d" id)*)
+    |(name,ammount)::rest -> if (acu == id) then name ^"("^(string_of_int id)^")" else loop (acu+1) rest id1
   in
-  loop 0 l
+  loop 0 l id
 
 let print_debts g name_list n=
   let curried x = if ((x!=n) && (x!=(n+1)))
-      then ((Printf.printf "%s doit"  (get_name_by_id name_list x) );
-      (List.iter (fun (id, (ammount,_)) -> (Printf.printf " %d € a %s\n%!" ammount (get_name_by_id name_list id))) (Graph.out_arcs g x));
+      then ((Printf.printf "%s doit :\n" (get_name_by_id name_list x) );
+      (List.iter (fun (id, (ammount,_)) -> if ((id!=n) && (id!=(n+1))) then (Printf.printf " %d € a %s\n%!" ammount (get_name_by_id name_list id)) else ()) (Graph.out_arcs g x));
       (Printf.printf "\n%!"))
       else Printf.printf "" in
   Graph.n_iter g curried;;
+
+
 
 let resolv (n,tot_list,tot) = 
 	let tot_list2 = List.map (fun (x,a)->(x,(a-((int_of_float ((float_of_int tot)/.(float_of_int n))))))) tot_list in
@@ -106,10 +113,9 @@ let resolv (n,tot_list,tot) =
 	let (solved_Graph,flow) = (ford_fulkerson final_graph (n) (n+1)) in
   let str_result = int_int_graph_to_string_graph solved_Graph in
   Gfile.export "MoneySharing_result.dot" str_result ;
+  Sys.command ("dot -Tsvg MoneySharing_result.dot > ./TestToExport/MoneySharing_result.svg");
   Printf.printf "FLOW = %d\n%!" flow;
 	print_debts solved_Graph tot_list n ;;
-
-
-
+  
 
 
