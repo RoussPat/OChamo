@@ -1,6 +1,6 @@
 % MonyeSharing
-pers toto 
-pers tata
-pers titi
-t toto 100.00
-t tata 100.20
+p toto 
+p tata
+p titi
+t toto 100
+t tata 100

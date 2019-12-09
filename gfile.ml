@@ -124,7 +124,6 @@ let int_int_graph_to_string_graph g = gmap g (fun (a,b) -> ("\"" ^ (string_of_in
 
 let int_int_int_graph_to_string_graph g = gmap g (fun (a,b,c) -> ("\"" ^ (string_of_int a)  ^ "/" ^ (string_of_int b) ^ " - " ^ (string_of_int c) ^ "\""));;
 
-
 let initialise_flow_graph_min_cost str = 
   gmap (from_file str) (fun x -> match ( String.split_on_char '-' x) with (*arcs au format capacité-cout*)
           |[x;y]-> (0, int_of_string x, int_of_string y )

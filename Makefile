@@ -1,6 +1,6 @@
 
 modules :
-	ocamlc -c -g graph.mli graph.ml tools.mli tools.ml gfile.mli gfile.ml flow.mli flow.ml fcost.mli fcost.ml
+	ocamlc -c -g graph.mli graph.ml tools.mli tools.ml gfile.mli gfile.ml flow.mli flow.ml fcost.mli fcost.ml MoneySharing.mli MoneySharing.ml
 
 main: modules
 	ocamlc -g -o ftest graph.cmo gfile.cmo tools.cmo flow.cmo ftest.ml
@@ -20,6 +20,9 @@ test : modules
 
 test2 : modules
 	ocamlc -g -o test2 graph.cmo tools.cmo gfile.cmo flow.cmo test2.ml
+
+test3 : modules
+	ocamlc -g -o test3 graph.cmo tools.cmo gfile.cmo flow.cmo MoneySharing.cmo test3.ml
 
 ff : modules
 	ocamlc -g -o ford-fulkerson graph.cmo tools.cmo gfile.cmo flow.cmo ford-fulkerson.ml
