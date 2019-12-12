@@ -45,6 +45,8 @@ mrproper:
 	rm -rf ./_build
 	rm -f test
 	rm -f MoneySharing/MoneySharing
+	rm -f ford-fulkerson
+	rm -f ford-fulkerson-min-cost
 	rm -f test3
 	rm -f test2
 	rm -f test
