@@ -20,10 +20,11 @@ Version 2 - Money Sharing :
 Format du fichier attendu dans input.txt:
 						    p [nouvelle_personne]
 						    t [personne] [montant] 
-Compiler : Make MStest
+						    % [commentaire]
+Compiler : "Make MStest"
+Rq: il y a potentielement besoin de recompiler, utiliser "make mrproper" avant
 Executer : ./MStest
-Exemple : MStest
-
+Note : pour creer un ficher de test par vous meme regardez la structure du fichier MStest. La fonction resolve du fichier MoneySharing.ml est la fonction principale de resolution du probleme.
 
 Version 3 - Flot Max Cout Min :
 
