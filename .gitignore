@@ -1,9 +1,9 @@
 *.mlo
 *.cmo
 *.cmi
-ftest 
-ftest.byte
-ftest.native
+MSTest
+ford-fulkerson
+ford-fulkerson-min-cost
 ./_build
 ./TestNoToExport
 ./MonyeSharing/MoneySharing
