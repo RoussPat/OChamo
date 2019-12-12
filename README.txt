@@ -14,7 +14,7 @@ Il affiche pour chaque itération le chemin trouvé sous forme de liste de node 
 
 Exemple :
 ./ford-fulkerson graph1 0 3
-
+./ford-fulkerson graph2 0 5
 
 
 
