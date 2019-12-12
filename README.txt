@@ -17,10 +17,12 @@ Exemple :
 
 Version 2 - Money Sharing :
 
-Format du fichier attendu :
-Compiler :
-Executer :
-Exemple :
+Format du fichier attendu dans input.txt:
+						    p [nouvelle_personne]
+						    t [personne] [montant] 
+Compiler : Make MStest
+Executer : ./MStest
+Exemple : MStest
 
 
 Version 3 - Flot Max Cout Min :

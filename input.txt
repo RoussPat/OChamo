@@ -1,6 +1,23 @@
 % MonyeSharing
-p toto 
-p tata
-p titi
-t toto 100
-t tata 100
+p jack
+p jhon
+p james
+p jessica
+p jean
+p joris
+p jaqueline
+p jeremy
+t jack 156
+t jhon 20
+t james 45
+t jessica 485
+t jean 25
+t joris 84
+t jeremy 89
+t jeremy 11
+t jaqueline 45
+t jack 50
+t jhon 54
+t jean 87
+t jaqueline 60
+

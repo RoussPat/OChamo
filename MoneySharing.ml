@@ -18,13 +18,13 @@ let add_transaction l person ammount =
 
 
 let read_transaction n tot_list tot line =
-  Printf.printf "new transaction at line %s\n%!" line;
+  (*Printf.printf "new transaction at line %s\n%!" line;*)
 	try Scanf.sscanf line "t %s %d" (fun pers ammount -> ((n,(add_transaction tot_list  pers ammount),  tot+ammount)))
 	with e -> Printf.printf "Cannot read transaction in line - %s:\n%s\n%!" (Printexc.to_string e) line ;
     	failwith "from_file" ;;
 
 let read_Pers tot_list line =
-  Printf.printf "new persone at line %s\n%!" line;
+  (*Printf.printf "new persone at line %s\n%!" line;*)
 	try Scanf.sscanf line "p %s" (fun name -> (name,0)::tot_list)
 	with e ->  
 		Printf.printf "Cannot read person name in line - %s:\n%s\n%!" (Printexc.to_string e) line ;
@@ -41,7 +41,6 @@ let read_comment n tot_list2 tot2 line =
 
 
 let from_file path =
-  Printf.printf "FROM FILE STARTED\n%!" ; 
   let infile = open_in path in
   (* Read all lines until end of file. 
    * n is the current node counter. *)
@@ -80,14 +79,14 @@ let rec print_tot_list l = match l with
 let get_name_by_id l id = 
   let rec loop acu lis id1= match lis with
     |[] -> "test" (*failwith (Printf.sprintf "Name not found id= %d" id)*)
-    |(name,ammount)::rest -> if (acu == id) then name ^"("^(string_of_int id)^")" else loop (acu+1) rest id1
+    |(name,ammount)::rest -> if (acu == id) then name ^" ("^(string_of_int id)^")" else loop (acu+1) rest id1
   in
   loop 0 l id
 
 let print_debts g name_list n=
   let curried x = if ((x!=n) && (x!=(n+1)))
       then ((Printf.printf "%s doit :\n" (get_name_by_id name_list x) );
-      (List.iter (fun (id, (ammount,_)) -> if ((id!=n) && (id!=(n+1))) then (Printf.printf " %d € a %s\n%!" ammount (get_name_by_id name_list id)) else ()) (Graph.out_arcs g x));
+      (List.iter (fun (id, (ammount,_)) -> if ((id!=n) && (id!=(n+1))) then (Printf.printf "%d € a %s\n%!" ammount (get_name_by_id name_list id)) else ()) (Graph.out_arcs g x));
       (Printf.printf "\n%!"))
       else Printf.printf "" in
   Graph.n_iter g curried;;
@@ -114,7 +113,7 @@ let resolv (n,tot_list,tot) =
   let str_result = int_int_graph_to_string_graph solved_Graph in
   Gfile.export "MoneySharing_result.dot" str_result ;
   Sys.command ("dot -Tsvg MoneySharing_result.dot > ./TestToExport/MoneySharing_result.svg");
-  Printf.printf "FLOW = %d\n%!" flow;
+  (*Printf.printf "FLOW = %d\n%!" flow;*)
 	print_debts solved_Graph tot_list n ;;
   
 
