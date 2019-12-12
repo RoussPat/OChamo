@@ -84,7 +84,7 @@ let ford_fulkerson_min_cost g puit source=
     match (find_path var_graph [] puit source) with
       | None -> (g,d,c)
       | Some((x,k)) -> (let delta = (flow_var var_graph x) in 
-                    List.iter listprint x ;Printf.printf "| avec var flot D = %d et cout = %d\n%!" delta k; inner (apply_flow_var g x delta) (d+delta) (c+(k*delta)))
+                    (*List.iter listprint x ;Printf.printf "| avec var flot D = %d et cout = %d\n%!" delta k;*) inner (apply_flow_var g x delta) (d+delta) (c+(k*delta)))
   in
   inner g 0 0;;
 

@@ -1,6 +1,8 @@
 Bienvenue dans notre merveilleux module OCaml implémentant l'aglorythme de Ford-Fulkerson
 
-Version 1 - Flot Max:
+####################################
+###     Version 1 - Flot Max     ###
+####################################
 
 Format du fichier attendu :
 Format des fichiers de base fourni dans le sujet du projet
@@ -15,7 +17,10 @@ Exemple :
 
 
 
-Version 2 - Money Sharing :
+
+####################################
+###  Version 2 - Money Sharing   ###
+####################################
 
 Format du fichier attendu dans input.txt:
 						    p [nouvelle_personne]
@@ -25,11 +30,15 @@ Executer : ./MStest
 Exemple : MStest
 
 
-Version 3 - Flot Max Cout Min :
 
+
+####################################
+##  Version 3 - Flot Max Cout Min ##
+####################################
 Format du fichier attendu :
 Même format que la version 1, avec e [node1] [node2] [capacité]-[coût]
-
+Sortie :
+Flot max et cout min du graphe donné, avec le graphe associé dans le fichier [nom du fichier graphe]_result.svg
 Compiler : make ffcost
 Executer : ./ford-fulkerson-min-cost [graph-file] [node-source] [node-puit]
-Exemple :
+Exemple : ./ford-fulkerson-min-cost graph1cost 0 7
